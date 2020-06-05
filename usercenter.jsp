@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -7,11 +8,18 @@
 body{
 	background-color:#D19275;
 }
-#container{
+.container{
 	margin: 0 auto;
 	padding: 0 auto;
 }
-#top{
+.first{
+    background-color:#E9C2A6;
+	magin:0 auto;
+	height:40px;
+	width:100%；
+	position:relative;
+}
+.top{
 	background-color:white;
 	border-style: solid;
 	border-width: 2px 0px 0px 0px;
@@ -20,7 +28,7 @@ body{
 	height:35px;
 	width:100%；
 }
-#second{
+.second{
 	width:100%;
 	height:190px;
 	border-style: solid;
@@ -29,7 +37,7 @@ body{
 	background-color:#E9C2A6;
 	clear:both;
 }
-#third{
+.third{
 	width:100%;
 	height:50px;
 	border-style: solid;
@@ -38,7 +46,7 @@ body{
 	background-color:#E9C2A6;
 	clear:both;
 }
-#forth{
+.forth{
 	width:100%;
 	height:140px;
 	border-style: solid;
@@ -47,7 +55,7 @@ body{
 	background-color:#E9C2A6;
 	clear:both;
 }
-#interval{
+.interval{
 	width:100%;
 	height:20px;
 	border-style: solid;
@@ -56,7 +64,7 @@ body{
 	background-color:#E9C2A6;
 	clear:both;
 }
-#fifth{
+.fifth{
 	width:100%;
 	height:50px;
 	border-style: solid;
@@ -66,7 +74,7 @@ body{
 	clear:both;
 	position:relative;
 }
-#sixth{
+.sixth{
 	width:100%;
 	height:140px;
 	border-style: solid;
@@ -75,110 +83,82 @@ body{
 	background-color:#E9C2A6;
 	clear:both;
 }
-#seventh{
+.seventh{
 	width:100%;
 	height:60px;
 	border-color:transperation;
 	clear:both;
 	position:relative;
 }
-#top-left{
+.top-left{
 	float:left;
 	width:170px;
 	height:35px;
 	position:relative;
 }
-#top-right{
+.top-right{
 	 float:right;
 	 width:140px;
 	 height:35px;
 	 position:relative;
 }
-#a-image{
-	 width:40px;
-	 height:27px;
-}
-#second-left{
+.second-left{
      float:left;
 	 position:relative;
 	 margin:0;
 	 width:210px;
 	 height:100%;
 }
-#second-center{
+.second-center{
     float:left;
     position:relative;
 	margin:0;
 	width:280px;
 	height:100%;
 }
-#second-right{
+.second-right{
 	float:right;
 	position:relative;
 	margin:0;
 	width:400px;
 	height:100%;
 }
-#second-zhuce{
+.second-zhuce{
 	float:left;
-	 position:relative;
-	 margin:0;
-	 width:150px;
-	 height:100%;
+	position:relative;
+	margin:0;
+    width:150px;
+	height:100%;
 }
-#second-denglu{
+.second-denglu{
 	float:left;
 	position:relative;
 	margin:0;
 	width:400px;
 	height:100%;
 }
-#third-left{
+.third-left{
     float:left;
 	position:relative;
 	margin:0;
 	width:400px;
 	height:100%;
 }
-#third-right{
+.third-right{
     float:right;
 	position:relative;
 	margin:0;
 	width:400px;
 	height:100%;
 }
-#forth-left{
+.forth-left{
 	float:left;
 	position:relative;
 	margin:0;
 	width:33.3%;
 	height:100%;
 }
-#forth-center{
-	float:left;
-	position:relative;
-	margin:0;
-	width:33.3%;
-	height:100%;
-	border-style: solid;
-	border-width:0px 2px 0px 2px;
-	border-color:#D19275;
-}
-#forth-right{
-	float:right;
-	position:relative;
-	margin:0;
-	width:33%;
-	height:100%;
-}
-#sixth-left{
-	float:left;
-	position:relative;
-	margin:0;
-	width:33.3%;
-	height:100%;
-}
-#sixth-center{
+.forth-center{
 	float:left;
 	position:relative;
 	margin:0;
@@ -188,34 +168,63 @@ body{
 	border-width:0px 2px 0px 2px;
 	border-color:#D19275;
 }
-#sixth-right{
+.forth-right{
 	float:right;
 	position:relative;
 	margin:0;
 	width:33%;
 	height:100%;
 }
-#top-left div{
+.sixth-left{
+	float:left;
+	position:relative;
+	margin:0;
+	width:33.3%;
+	height:100%;
+}
+.sixth-center{
+	float:left;
+	position:relative;
+	margin:0;
+	width:33.3%;
+	height:100%;
+	border-style: solid;
+	border-width:0px 2px 0px 2px;
+	border-color:#D19275;
+}
+.sixth-right{
+	float:right;
+	position:relative;
+	margin:0;
+	width:33%;
+	height:100%;
+}
+.first img{
+	position: absolute;
+	left: 9px;
+	top: 9px;
+}
+.top-left div{
 	position: absolute;
 	left: 49px;
 	top: 6px;
 }
-#top-right div{
+.top-right div{
 	position: absolute;
 	top: -8px;
 	left: 2px;
 }
-#second-left img{
+.second-left img{
 	position: absolute;
 	left: 33px;
 	bottom: 34px;
 }
-#second-center p{
+.second-center p{
 	position: absolute;
 	left: 14px;
 	top: 69px;
 }
-#second-zhuce div{
+.second-zhuce div{
 	position: absolute;
 	left: 40px;
 	top: 131px;
@@ -223,7 +232,7 @@ body{
 	width: 65px;
 	background-color:#D19275;
 }
-#second-denglu div{
+.second-denglu div{
 	position: absolute;
 	left: 28px;
 	top: 131px;
@@ -231,42 +240,42 @@ body{
 	width: 65px;
 	height: 24px;
 	}
-#second-right div{
+.second-right div{
 	position: absolute;
 	left: 106px;
 	top: 126px;
 }
-#third-left div{
+.third-left div{
 	position: absolute;
 	left: 18px;
 	top: -3px;
 	height: 27px;
 }
-#third-right div{
+.third-right div{
 	position: absolute;
 	left: 200px;
 	top: -4px;
 	height: 90%;
 	width: 159px;
 }
-#forth-left div{
+.forth-left div{
 	position: absolute;
 	left: 144px;
 	top: 36px;
 	width: 70px;
 }
-#forth-center div{
+.forth-center div{
 	position: absolute;
 	left: 200px;
 	top: 36px;
 }
-#forth-right div{
+.forth-right div{
 	position: absolute;
 	left: 130px;
 	top: 36px;
 	width: 75px;
 }
-#fifth div{
+.fifth div{
 	position: absolute;
 	float: left;
 	width: 100px;
@@ -274,24 +283,24 @@ body{
 	left: 5px;
 	top: -3px;
 }
-#sixth-left div{
+.sixth-left div{
 	position: absolute;
 	left: 144px;
 	top: 36px;
 	width: 70px;
 }
-#sixth-center div{
+.sixth-center div{
 	position: absolute;
 	left: 200px;
 	top: 36px;
 }
-#sixth-right div{
+.sixth-right div{
 	position: absolute;
 	left: 100px;
 	top: 36px;
 	width: 141px;
 }
-#seventh a{
+.seventh a{
 	position: absolute;
 	background-color: #E9C2A6;
 	left:45%;
@@ -304,18 +313,29 @@ body{
 a{
     text-decoration:none;
 }
+.a-image{
+	 width:40px;
+	 height:27px;
+}
+.c-image{
+     width:100px;
+	 height:37px;
+}
 </style>
 </head>
 
 <body>
-<div id="container">
-   <div id="top">
-      <div id="top-left">
+<div class="container">
+   <div class="first">
+	    <img src="image/logo.jpg"   class="c-image" />
+	</div>
+   <div class="top">
+      <div class="top-left">
         <a href="https://www.baidu.com//">
-        <img  src="image/1.jpg" width="52" height="8" id="a-image" /></a>
+        <img  src="image/1.jpg" class="a-image"/></a>
 		<div>返回首页</div>
-     </div>
-      <div id="top-right">
+      </div>
+      <div class="top-right">
 	      <div><p>用户中心</p></div>
      </div>
    </div>
@@ -332,65 +352,68 @@ a{
 	   </div>
    </div>
    -->
-  <div id="second">
-       <div id="second-left">
+  <div class="second">
+       <div class="second-left">
            <img src="image/2.jpg" width="130" height="130" />
        </div>
-    <div id="second-zhuce">
-         <a href="https://www.baidu.com//"><div align="center">注册</div></a>
+    <div class="second-zhuce">
+         <a href="register.jsp"><div align="center">注册</div></a>
 	   </div>
-	   <div id="second-denglu">
-	      <a href="https://www.baidu.com//"><div align="center">登录</div></a>
+	   <div class="second-denglu">
+	      <a href="login.jsp"><div align="center">登录</div></a>
 	   </div>
    </div>
-  <div id="third">
-        <div id="third-left">
+  <div class="third">
+        <div class="third-left">
 		    <div><p>我的订单</p></div>
 	    </div>
-		<div id="third-right">
-		    <div><a href="https://www.baidu.com//"><p>查看全部订单-></p></a></div>
+		<div class="third-right">
+		    <div><a href="dingdan.jsp"><p>查看全部订单-></p></a></div>
 		</div>
   </div>
-  <div id="forth">
-       <div id="forth-left" align="center">
-	       <div align="center">
-		       <a href="https://www.baidu.com//"><p>待付款</p></a>
-		   </div>
-	   </div>
-	   <div id="forth-center" align="center">
+  <div class="forth">
+       <a href="daifukuan.jsp">       <div class="forth-left" align="center">              
+          <div align="center"><p>待付款</p>
+		  </div>
+        </div></a>
+	   <a href="daifahuo.jsp">
+       <div class="forth-center" align="center">
          <div align="center">
-		       <a href="https://www.baidu.com//"><p>待发货</p></a>
+		       <p>待发货</p>
 		   </div>
-       </div>
-	   <div id="forth-right" align="center">
+       </div></a>
+	   <a href="daishouhuo.jsp">
+       <div class="forth-right" align="center">
          <div align="center">
-		       <a href="https://www.baidu.com//"><p>待收货</p></a>
+		       <p>待收货</p>
 		   </div>
-       </div>
+       </div></a>
 	</div>
-	<div id="interval">
+	<div class="interval">
 	</div>
-	<div id="fifth">
+	<div class="fifth">
 	     <div align="center"><p>我的服务</p> </div>
   </div>
-  <div id="sixth">
-       <div id="sixth-left" align="center">
+  <div class="sixth">
+       <a href="Gouwuche.jsp">
+       <div class="sixth-left" align="center">
 	       <div align="center">
-		       <a href="https://www.baidu.com//"><p>购物车</p></a>
+		       <p>购物车</p>
 		   </div>
-	   </div>
-       <div id="sixth-center" align="center">
+	   </div></a>
+       <a href="zhanneixin.jsp">
+       <div class="sixth-center" align="center">
          <div align="center">
-		       <a href="https://www.baidu.com//"><p>站内信</p></a>
+		       <p>站内信</p>
 	     </div>
-    </div>
-	   <div id="sixth-right" align="center">
+       </div></a>
+	   <div class="sixth-right" align="center">
          <div align="center">
-		       <a href="https://www.baidu.com//"><p>更多敬请期待…</p></a>
+		     <p>更多敬请期待…</p>
 	     </div>
     </div>
 	</div>
-    <!--<div id="seventh" >
+    <!--<div class="seventh" >
       <a href="https://www.baidu.com//">
       <div align="center"><p>退出登录</p></div></a>
     </div>
