@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,7 +11,7 @@
   #header{width:1100px;height:90px;background:#E9C2A6;}
   #logo{width:200px;height:80px;float:left;text-align:center;}
   #XX2{width:1100px;height:10px;float:left;}
-  #XX{width:900px;height:15px;float:right;}
+  #XX{width:900px;height:5px;float:right;}
   #XX3{width:1100px;height:30px;}
   #nav{width:900px;height:40px;background:#E9C2A6;float:right;font-size:20px;font-weight:bold;}
   #k1{float:left;}
@@ -31,6 +31,7 @@
   a:link{color:white;text-decoration:none;}
   a:visited{color:white;}
   a:hover{color:white;text-decoration:none;}
+  td{font-size:200%}
 </style>
 </head>
 
@@ -46,7 +47,7 @@
         <table width="100%" height="40px">
            <tr>
               <td align="center"><a href="">购物中心</a></td>
-              <td align="center"><a href="">购物车</a></td>
+              <td align="center"><a href="http://localhost:8080/KS/Gouwuche.jsp">购物车</a></td>
               <td align="center"><a href="">用户中心</a></td>
            </tr>
         </table>
@@ -58,22 +59,19 @@
     <div id="bodyer1"></div>
     <div id="bodyer3">
       <div id="bodyer2"> 
-        <div id="bodyer9"></div>
-        <a href=""><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="300px" height="450px"></a>
+        <a href=""><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
       </div>
       <div id="bodyer4">
         <div id="bodyer1"></div>
         <div id="bodyer5">
           <div id="bodyer2"> 
-             <div id="bodyer9"></div>
-             <a href=""><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="300px" height="450px"></a>
+             <a href=""><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
           </div>
           <div id="bodyer6">
             <div id="bodyer1"></div>
             <div id="bodyer7">
               <div id="bodyer2"> 
-                <div id="bodyer9"></div>
-                <a href=""><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="300px" height="450px"></a>
+                <a href=""><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
               </div>
               <div id="bodyer8"></div>
             </div>
