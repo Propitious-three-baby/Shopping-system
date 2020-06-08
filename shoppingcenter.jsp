@@ -201,8 +201,8 @@ body{
 
 .fifth .fifth-left{
 	position: absolute;
-	left: 184px;
-	top: 482px;
+	left: 189px;
+	top: 440px;
 	height: 100px;
 	width: 149px;
 	background-color: #E9C2A6;
@@ -213,20 +213,20 @@ body{
 	width: 149px;
 	background-color: #E9C2A6;
 	left: 582px;
-	top: 482px;
+	top: 440px;
 }
 .fifth .fifth-right{
 	position: absolute;
 	height: 100px;
 	width: 149px;
 	background-color: #E9C2A6;
-	left: 994px;
-	top: 482px;
+	left: 992px;
+	top: 438px;
 }
 .sixth p{
 	position: absolute;
-	left: 23px;
-	top: 594px;
+	left: 19px;
+	top: 551px;
 	height: 25px;
 }
 .seventh-left img{
@@ -292,7 +292,7 @@ a{
 	</div>
 	<div class="top">
       <div class="top-left">
-        <a href="https://www.baidu.com//">
+        <a href="Shouye.jsp">
         <img  src="image/1.jpg" class="a-image"/></a>
 		<div>返回首页</div>
      </div>
@@ -302,9 +302,10 @@ a{
    </div>
    <div class="second">
         <div align="center">搜索：</div>
-        <input type="text"/>
+        <input type="text" placeholder="请输入搜索商品名称"/><!-- 添加搜索框中提示文字 -->
   </div>
-  <div class="third">
+  <!-- 不做分类了，把分类藏起来 -->
+  <!-- <div class="third">
     <div>
         <a href="https://www.baidu.com//">分类1</a>
         &nbsp;&nbsp;
@@ -315,7 +316,7 @@ a{
         <a href="https://www.baidu.com//">分类4</a>
     </div>
   </div>
-   
+   -->
   <div class="forth">
     <div class="forth-left">
           
