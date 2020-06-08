@@ -319,19 +319,30 @@ a{
 }
 .c-image{
      width:100px;
-	 height:37px;
+	 height:37px;    
 }
 </style>
 </head>
 
 <body>
+<!-- 获取用户昵称，若不存在，则弹出警告框提醒用户去登陆，并跳转到登录页面 -->
+<!-- 测试功能时藏起来 -->
+
+<%	String nickname="纤夫的爱";
+	if(nickname==null||nickname==""){ %>
+<%/*String nickname=(String)session.getAttribute("nickname") ;
+   if(nickname==null||nickname==""){
+*/%>
+	 this.Response.Write("<script language=javascript>alert('请先登录');
+	window.window.location.href='login.jsp'</script>");
+ <%  } else{  %>
 <div class="container">
    <div class="first">
 	    <img src="image/logo.jpg"   class="c-image" />
 	</div>
    <div class="top">
       <div class="top-left">
-        <a href="https://www.baidu.com//">
+        <a href="Shouye.jsp">
         <img  src="image/1.jpg" class="a-image"/></a>
 		<div>返回首页</div>
       </div>
@@ -339,19 +350,18 @@ a{
 	      <div><p>用户中心</p></div>
      </div>
    </div>
-   <!--   
-   <div id="second">
-       <div id="second-left">
+   <div class="second">
+       <div class="second-left">
            <img src="image/2.jpg" width="130" height="130" />
        </div>
-     <div id="second-center">
-       <p>昵称：</p>
+     <div class="second-center">
+       <p>昵称：<%=nickname %></p>     <!-- 用户昵称 -->
 	   </div>
-	   <div id="second-right">
-	      <div><a href="https://www.baidu.com//"><p>点击查看个人资料-></p></a></div>
+	   <div class="second-right">
+	      <div><a href="usermessage.jsp"><p>点击查看个人资料-></p></a></div>
 	   </div>
    </div>
-   -->
+<!-- 
   <div class="second">
        <div class="second-left">
            <img src="image/2.jpg" width="130" height="130" />
@@ -363,6 +373,7 @@ a{
 	      <a href="login.jsp"><div align="center">登录</div></a>
 	   </div>
    </div>
+   -->
   <div class="third">
         <div class="third-left">
 		    <div><p>我的订单</p></div>
@@ -413,11 +424,11 @@ a{
 	     </div>
     </div>
 	</div>
-    <!--<div class="seventh" >
-      <a href="https://www.baidu.com//">
+    <div class="seventh" >  
+    <a href="login.jsp">
       <div align="center"><p>退出登录</p></div></a>
     </div>
-    -->
 </div>
+ <%  }  %>
 </body>
 </html>
