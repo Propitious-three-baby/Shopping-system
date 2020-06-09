@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<jsp:useBean id="batch" class="com.Batch"></jsp:useBean>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -93,17 +94,48 @@ body{
 	left: 40px;
 	top: 20px;
 }
+.third-left .dingdan_id{
+	position: absolute;
+	height: 45px;
+	left: -1px;
+	top: -20px;
+}
 .third-right .name{
 	position: absolute;
-	left: -44px;
-	top: 76px;
+	left: -190px;
+	top: 39px;
 }
 .third-right .price{
 	position: absolute;
-	left: -43px;
-	top: 105px;
+	left: -190px;
+	top: 99px;
 	width: 157px;
-	height: 55px;
+	height: 56px;
+}
+.third-right .type_{
+	position: absolute;
+	left: -190px;
+	top: 10px;
+}
+.third-right .commodity_id{
+	position: absolute;
+	left: -190px;
+	top: 68px;
+	width: 181px;
+}
+.third-right .number{
+	position: absolute;
+	width: 143px;
+	height: 42px;
+	left: -190px;
+	top: 126px;
+}
+.third-right .remark{
+	position: absolute;
+	left: 139px;
+	top: 12px;
+	width: 330px;
+	height: 94px;
 }
 .third-right input{
 	position: absolute;
@@ -133,13 +165,31 @@ a{
 </head>
 
 <body>
+<%	String nickname="纤夫的爱"; %><!-- 测试例 -->
+<%
+	String sql1=" select * from dingdan_message,commodity_message where dingdan_message.user='"+nickname+"' and dingdan_message.commodity_id=commodity_message.commodity_id;";   //session.getAttribute("nickname")
+	ResultSet rs_dingdan=batch.executeQuery(sql1);
+	String dingdan_id="";
+	String user="";
+	String payment="";
+	String remark="";
+	String number="";
+	String commodity_id="";
+	String receive="";
+	String send="";
+	
+	String image="";
+	String commodity_name="";
+	String price="";
+	String type_="";
+%>
 <div class="container">
     <div class="first">
 	    <img src="image/logo.jpg"   class="c-image" />
 	</div>
    <div class="top">
       <div class="top-left">
-        <a href="https://www.baidu.com//">
+        <a href="usercenter.jsp">
         <img  src="image/1.jpg" width="52" height="8" class="a-image" /></a>
 		<div>返回用户中心</div>
       </div>
@@ -149,20 +199,55 @@ a{
    </div>
    <div class="second">
    </div>
+   <%
+  	while(rs_dingdan.next()){
+  		dingdan_id=rs_dingdan.getString(1);
+  		user=rs_dingdan.getString(2);
+  		payment=rs_dingdan.getString(3);
+  		System.out.println(payment);
+  		remark=rs_dingdan.getString(4);
+  		number=rs_dingdan.getString(5);
+  		commodity_id=rs_dingdan.getString(6);
+  		receive=rs_dingdan.getString(7);
+  		send=rs_dingdan.getString(8);
+  		
+  		image=rs_dingdan.getString(10);
+  		commodity_name=rs_dingdan.getString(11);
+  		price=rs_dingdan.getString(12);
+  		type_=rs_dingdan.getString(13);
+  		if(payment.equals("F")){
+  %>
   <div class="third">
         <div class="third-left">
-           <img src="image/3.jpg" class="b-image"/>
+           <div class="dingdan_id"><p>订单号：</p></div>
+          <img src="<%=image %>" class="b-image"/>
         </div>
         <div class="third-right">     
            <div class="name">
-             <p>商品名：摄相机</p>
+             <p>商品名：<%=commodity_name %></p>
            </div>
            <div class="price">
-              <p>价格:5000<p>
+             <p>价格：<%=price %><p>
            </div>
-           <input type="submit" value="确认支付"/>
+           <div class="type_">
+             <p>类型：<%=type_ %></p>
+           </div>
+	      <div class="commodity_id">
+            <p>商品号：<%=commodity_id %></p>
+           </div>
+           <div class="number">
+             <p>数量：<%=number %></p>
+           </div>
+          <div class="remark">
+            <p>备注：<%=remark %></p>
+           </div>
+           <a href="https://www.baidu.com//">
+           <input type="submit" value="确认支付"/></a>
         </div>
    </div>
+  <%      }
+  	}
+  	%>
 </div>
 </body>
 </html>
