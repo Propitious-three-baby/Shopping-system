@@ -12,7 +12,7 @@ public class Batch {
 	public ResultSet rs = null; // 结果对象集
 	// 驱动类的类名
 	private static String dbClassName = "com.mysql.jdbc.Driver";
-	private static String dbUrl = "jdbc:mysql://localhost:3306/text_1?";
+	private static String dbUrl = "jdbc:mysql://localhost:3306/shopping-system?";
 	private static String dbUser = "root"; // 登录mysql的用户名
 	private static String dbPwd = "root"; // 登录mysql的密码
 	/*
@@ -30,7 +30,7 @@ public class Batch {
 			e.printStackTrace();
 		}
 		if(conn!=null) {
-			System.out.println("....");
+			System.out.println("数据库连接成功！");
 		}
 		if (conn == null) {
 			System.err.println("DbConnectionManger.getConnection():" + dbClassName + "\r\n" + dbUrl + "\r\n" + dbUser
@@ -50,6 +50,9 @@ public class Batch {
 			// 创建用于执行SQL语句的statement对象
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			result = stmt.executeUpdate(sql);
+			if (result>0) { // 如果存在数据
+				System.out.println("修改成功！");
+			}
 		} catch (SQLException e) {
 			// TODO: handle exception
 			result = 0;
@@ -119,11 +122,6 @@ public class Batch {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace(System.err);
-		}
-	}
-	public void test() {
-		if (getConnection() != null) {
-			System.out.println("测试连接成功");
 		}
 	}
 }
