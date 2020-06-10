@@ -3,7 +3,12 @@
     Created on : 2020-6-4, 9:55:32
     Author     : church刘诗思
 --%>
-
+<%@page import="javafx.scene.input.KeyCode"%>
+<%@page import="java.lang.Integer"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!doctype html>
@@ -65,41 +70,55 @@
         </style>
     </head>
     <body>
-        <div id="详情页" >
+        <div id="详情页">
         <div id="nav">
             <table>
             	<tr>
-                    <td  width="500px"><a href=""><img src="返回购物中心.png"></a></td>
+                    <td  width="500px"><a href="http://localhost:8084/web/shoppingcenter.jsp"><img src="返回购物中心.png"></a></td>
                      <td align="left">商品详情页</td>
                 </tr>
             </table>
         </div>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
-        
+        <%
+            String goods=request.getParameter("shexiangji_id");
+            Connection con=null;
+        Statement stmt=null;
+        ResultSet rs=null;
+        Class.forName( "com.mysql.jdbc.Driver");
+        String 
+        url="jdbc:mysql://localhost:3306/shopping-system?useUnicode=true&characterEncoding=gbk";
+        con=DriverManager.getConnection(url,"root","root");
+        stmt=con.createStatement();
+
+       String sql="select * from goods where id='"+ goods+"'";
+        rs=stmt.executeQuery(sql);
+        while(rs.next()){
+        %>
+
             <div id="main" >
-        	<img src="背景图片1.jpg"/>
+        	<img src="<%=rs.getString("url")%>" />
             <div class="out" >
-                <div class="商品" ><h1>商品名称</h1></div>
+                <div class="商品" ><h1><%=rs.getString("name")%></h1></div>
             </div>
             <div class="out">
-            	<div class="商品" >颜色选择</div>
+            	<div class="商品" >商品价格：<%=rs.getString("price")%></div>
             </div>
             <div class="out">
-            	<div class="商品" >尺码选择</div>
+            	<div class="商品" >商品详细描述：<%=rs.getString("describe")%></div>
             </div>
             <div class="out">
-            	<div class="商品" >数量选择</div>
+            	<div class="商品" >商品库存量：<%=rs.getString("count")%></div>
             </div>
             <div class="out">
-                <button class="商品" id="提交"  >加入购物车</button>
+                <a href=""><button class="商品" id="提交" >加入购物车</button></a>
             </div>
             </div>
             <p>&nbsp;</p>
-            <div id="详细介绍">
-                <div>商品详细介绍：</div>
-                <textarea name="商品详细介绍" cols="200" rows="20"></textarea>
-            </div>
+            <%
+                }
+            %>
         </div>
     </body>
 </html>
