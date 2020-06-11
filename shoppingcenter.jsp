@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<jsp:useBean id="batch" class="com.Batch"></jsp:useBean>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -134,32 +135,50 @@ body{
 	position: absolute;
 	left: 49px;
 	top: 6px;
+	width: 124px;
 }
 .top-right div{
 	position: absolute;
 	top: -12px;
 	left: 2px;
+	width: 106px;
 }
 .second div{
 	position: absolute;
 	left: 280px;
-	top: 53px;
+	top: 94px;
 	height: 27px;
 }
-.second input{
+.second .sousuo{
 	position: absolute;
 	left: 339px;
-	top: 52px;
+	top: 96px;
 	height: 21px;
 	width: 681px;
 	border-color: black;
 	border-width: 1px;
 }
+.second .dianji{
+	position: absolute;
+	background-color: #D19275;
+	border-width: 0px;
+	left: 1035px;
+	top: 96px;
+	height: 31px;
+	width: 75px;
+}
 .third div{
 	position: absolute;
 	width: 452px;
-	left: 470px;
-	top: 109px;
+	left: 469px;
+	top: 143px;
+}
+.forth-left img{
+	position: absolute;
+	left: 102px;
+	top: 28px;
+	width: 472px;
+	height: 242px;
 }
 .forth-right .forth-touxiang{
 	position: absolute;
@@ -168,41 +187,18 @@ body{
 	width: 144px;
 	height: 139px;
 }
-.forth-right .forth-denglu{
-	position: absolute;
-	background-color: #D19275;
-	width: 66px;
-	height: 50px;
-	top: 180px;
-	left: 88px;
-}
-.forth-right .forth-zhuce{
-	position: absolute;
-	background-color: #D19275;
-	left: 211px;
-	top: 180px;
-	width: 66px;
-	height: 50px;
-}
-.forth-right .forth-ID{
-	position: absolute;
-	width: 75px;
-	height: 40px;
-	left: 84px;
-	top: 177px;
-}
 .forth-right .forth-nicheng{
 	position: absolute;
-	width: 75px;
-	height: 40px;
-	left: 78px;
-	top: 215px;
+	width: 292px;
+	height: 76px;
+	left: 84px;
+	top: 213px;
 }
 
 .fifth .fifth-left{
 	position: absolute;
 	left: 189px;
-	top: 440px;
+	top: 481px;
 	height: 100px;
 	width: 149px;
 	background-color: #E9C2A6;
@@ -212,8 +208,8 @@ body{
 	height: 100px;
 	width: 149px;
 	background-color: #E9C2A6;
-	left: 582px;
-	top: 440px;
+	left: 579px;
+	top: 481px;
 }
 .fifth .fifth-right{
 	position: absolute;
@@ -221,12 +217,12 @@ body{
 	width: 149px;
 	background-color: #E9C2A6;
 	left: 992px;
-	top: 438px;
+	top: 481px;
 }
 .sixth p{
 	position: absolute;
-	left: 19px;
-	top: 551px;
+	left: 13px;
+	top: 491px;
 	height: 25px;
 }
 .seventh-left img{
@@ -236,34 +232,38 @@ body{
 }
 .seventh-right .name{
 	position: absolute;
-	left: 193px;
-	top: 86px;
+	left: 15px;
+	top: 40px;
 }
 .seventh-right .price{
 	position: absolute;
-	left: 194px;
-	top: 24px;
+	left: 15px;
+	top: 70px;
 	width: 157px;
-	height: 96px;
+	height: 60px;
+}
+.seventh-right .type{
+	position: absolute;
+	left: 15px;
+	top: 10px;
+}
+
+.seventh-right .stock{
+	position: absolute;
+	width: 143px;
+	height: 42px;
+	left: 15px;
+	top: 100px;
+}
+.seventh-right .des{
+	position: absolute;
+	left: 377px;
+	top: 11px;
+	width: 330px;
+	height: 94px;
 }
 a{
     text-decoration:none;
-}
-/* 鼠标移动到选项上修改背景颜色 */
-
-.dropdown{
-	position: relative;
-  	display: inline-block;
-  	
-}
-.content {
-	display:none;
-	position:absolute;
-	background-color:white;
-}
-.dropdown:hover .content{
-	display:block;
-	background-color:white;
 }
 .juzhong{
 	display:flex;
@@ -286,6 +286,9 @@ a{
 </head>
 
 <body>
+<% String user_name=(String)session.getAttribute("username1");  //传参
+	
+%>  
 <div class="container">
   <div class="first">
 	    <img src="image/logo.jpg"   class="c-image" />
@@ -302,58 +305,115 @@ a{
    </div>
    <div class="second">
         <div align="center">搜索：</div>
-        <input type="text" placeholder="请输入搜索商品名称"/><!-- 添加搜索框中提示文字 -->
+     <form action="sousuo_deal.jsp" method="post">
+            <input type="text" placeholder="请输入搜索商品名称" class="sousuo" name="goods_name"/><!-- 添加搜索框中提示文字 -->
+            <input type="submit" class="dianji" value="搜索"/>
+       </form>
   </div>
-  <!-- 不做分类了，把分类藏起来 -->
-  <!-- <div class="third">
+ <div class="third">
     <div>
-        <a href="https://www.baidu.com//">分类1</a>
+        <a href="fenlei.jsp?type=数码">数码类</a>
         &nbsp;&nbsp;
-        <a href="https://www.baidu.com//">分类2</a>
+        <a href="fenlei.jsp?type=美妆">美妆类</a>
          &nbsp;&nbsp;
-        <a href="https://www.baidu.com//">分类3</a>
+        <a href="fenlei.jsp?type=生活">生活类</a>
          &nbsp;&nbsp;
-        <a href="https://www.baidu.com//">分类4</a>
+        <a href="fenlei.jsp?type=美食">美食类</a>
     </div>
   </div>
-   -->
+
   <div class="forth">
+  <%
+	String sql1="select * from goods;";
+	ResultSet rs_goods=batch.executeQuery(sql1);
+	int promote;
+	String url="";
+	String goods_name="";
+	while(rs_goods.next()){
+	goods_name=rs_goods.getString(1);
+	url=rs_goods.getString(5);
+	promote=rs_goods.getInt(6);
+	if(promote==4){              //假设此处活动promote=4
+%>
     <div class="forth-left">
-          
+          <a href="Dtails.jsp?=goods_id=<%=goods_name%>"><img src="<%=url%>"  /></a>
     </div>
-       <div class="forth-right">
-         <a href="https://www.baidu.com//"><div class="forth-touxiang"><img src="image/2.jpg" width="130" height="130" /></div></a>
-         <!--<a href="https://www.baidu.com//"><div class="forth-denglu" align="center"><p>登录</p></div></a>
-         <a href="https://www.baidu.com//"><div class="forth-zhuce" align="center"><p>注册</p></div></a>
-         -->
-         <div class="forth-ID" align="center"><p>ID:</p></div>
-         <div class="forth-nicheng" align="center"><p>昵称:</p></div>
-    </div>
-  </div>
+<%       }
+	}
+
     
-    <div class="fifth">
-      <a href="https://www.baidu.com//"><div class="fifth-left" align="center" ><p>每周新品</p></div></a>
-      <a href="https://www.baidu.com//"><div class="fifth-center" align="center"><p>必买榜单</p></div></a>
-      <a href="https://www.baidu.com//"><div class="fifth-right" align="center"><p>超U惠</p></div></a>
+//    System.out.println(user_name);
+    String sql2="select sex from user where user_name='"+user_name+"';";
+	ResultSet rs_user=batch.executeQuery(sql2);
+	
+	String sex="";
+	String url_1="";
+	
+	while(rs_user.next()){
+	  sex=rs_user.getString(1);
+	  
+	  //System.out.println(sex);
+	  if(sex.equals("男")){
+		  url_1="image/男.jpg";
+	  }else{
+	  	url_1="image/女.jpg";
+	  }
+	}
+	String yemian="shoppingcenter";
+%>
+       <div class="forth-right">
+         <a href="usermessage.jsp?yemian=<%=yemian%>"><div class="forth-touxiang"><img src="<%=url_1%>" width="130" height="130" /></div></a>
+         <div class="forth-nicheng"><p>昵称:<%=user_name %></p></div>
+    </div>
+<% 
+%>
   </div>
     <div class="sixth">
     <p>人气推荐</p>
   </div>
-  <a href="https://www.baidu.com//">
+  <%
+	String sql5="select * from goods;";
+	ResultSet rs_commodity=batch.executeQuery(sql5);
+	
+	float price;
+	int stock;
+	String des="";
+	String url_2="";
+	String type="";
+	while(rs_commodity.next()){
+		goods_name=rs_commodity.getString(1);
+  		price=rs_commodity.getFloat(2);
+  		stock=rs_commodity.getInt(3);
+  		des=rs_commodity.getString(4);
+  		//System.out.println(price);
+  		url_2=rs_commodity.getString(5);
+  		type=rs_commodity.getString(7);
+%>
+  <a href="Dtails.jsp?goods_name=<%=goods_name%>">
   <div class="seventh">
   	  <div class="seventh-left">
-          <img src="image/3.jpg" class="b-image"/>
+          <img src="<%=url_2 %>" class="b-image"/>
        </div>
     <div class="seventh-right">
       <div class="name">
-             <p>商品名：摄相机</p>
+             <p>商品名：<%=goods_name %></p>
       </div>
-       <div class="price">
-             <p>价格:5000<p>
-       </div>
+      <div class="price">
+        <p>价格：<%=price %><p>
+           </div>
+           <div class="type">
+             <p>类型：<%=type %>类</p>
+           </div>
+      <div class="des">
+        <p>商品描述：<%=des %></p>
+      </div>
+      <div class="stock">
+         <p>库存：<%=stock %></p>
+      </div>
     </div>
   </div>
   </a>
+  <%} %>
 </div>
 </body>
 </html>
