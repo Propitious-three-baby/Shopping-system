@@ -49,6 +49,7 @@
 
     
         <%
+        String username1=(String)session.getAttribute("username1");
         Connection con=null;
         Statement stmt=null;
         ResultSet rs=null;
@@ -59,33 +60,29 @@
         con=DriverManager.getConnection(url,"root","root");
         stmt=con.createStatement();
 
-       String sql="select * from noname";
+       String sql="select * from user where user_name='"+username1+"'";
         rs=stmt.executeQuery(sql);
         while(rs.next()){
         %>
 
         <div id="管理页面">
-	<h3 class="欢迎词">XXX管理员，您好！欢迎来到管理中心！</h3>
+	<h3 class="欢迎词"><%=username1%>管理员，您好！欢迎来到管理中心！</h3>
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
         <div>
         <p class="头像">头像:</p>
-	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src=<%=rs.getString("头像链接") %> width="109" height="92" alt="头像" ></p>
+	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="背景图片1.jpg" width="109" height="92" alt="头像" ></p>
         
-        <p>昵称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=rs.getString("姓名") %> </p>
+        <p>昵称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=rs.getString("user_name") %> </p>
         <%
             }
-                    rs.close();
-                   stmt.close();
-                   con.close();
        %>
-            
             
         <p class="管理">查看订单信息: </p>
         <form method="get" action="manage-order.jsp">
 	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请输入需要查看得时间:
                     <input type="text" name="syear"/>年<input type="text" name="smonth"/>月<input type="text" name="sday"/>日至
-                    <input type="text" name="eyear" />年<input type="text" name="emonth"/>月<input type="text" name="eday"/>日
+                <input type="text" name="eyear" />年<input type="text" name="emonth"/>月<input type="text" name="eday"/>日
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="确定"  />
         </form>
     
@@ -97,10 +94,12 @@
                     <input name="gname" type="text" id="商品名称">
                     商品价格：
                     <input type="text" name="gprice" id="商品价格">
-                    商品尺码：
-                    <input type="text" name="gsize" id="商品尺码">
                     商品数量：
                     <input type="text" name="gcount" id="商品数量">
+                    商品图片地址：
+                     <input type="text" name="gurl" id="商品图片地址">
+                    商品类型：
+                     <input type="text" name="gtype" id="类型">
                  </li>
                 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品详细信息：</li>
                 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -108,12 +107,11 @@
                   <input type="submit" name="提交" id="提交" value="添加">
                 </li>
             </ul>
-            
         </form>
         <form method="get" action="goods-delete.jsp">
-             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二、商品删除：<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二、商品删除和商品设置：<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            删除商品名称：<input type="text" name="name"/><input type="submit" value="删除"/>
+            需要删除或设置的商品名称：<input type="text" name="ask_name"/><input type="submit" value="查询"/>
         </form>
         <a href="http://localhost:8084/web/Shouye.jsp"><img src="返回.png"/></a>
         </div>
