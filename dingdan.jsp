@@ -200,7 +200,7 @@
  	String receive="";
  	
  	String url="";
- 	float price="";
+ 	float price;
  	String type="";
  	int x=0;
  %>
