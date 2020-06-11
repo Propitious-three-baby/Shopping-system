@@ -185,8 +185,9 @@
  </head>
 
  <body>
- <%	String user_name=request.getParameter("user_name"); 
- 	System.out.println(user_name);
+ <%	//String user_name=request.getParameter("user_name"); 
+ 	//System.out.println(user_name);
+ 	String user_name="小红";
  %>
  <%
  	String sql1="select * from `order`,goods where order.user_name='"+user_name+"' and order.goods_name=goods.goods_name order by id;";
@@ -236,7 +237,11 @@
    %>
    <div class="third">
          <div class="third-left">
+         <%
+         if(x!=id||x==0){ 
+         %>
             <div class="dingdan_id"><p>订单号：<%=id %></p></div>
+            <%} %>
             <img src="<%=url %>" class="b-image"/>
          </div>
          <div class="third-right"> 
@@ -244,7 +249,7 @@
          if(x!=id||x==0){ 
          %>
             <div class="shanchu" align="center"><a href="dingdan_deal.jsp?id=<%=id %>&user_name=<%=user_name%>">
-                <input type="submit" value="删除订单"/></a>
+                <input type="submit" value="删除订单<%=id%>"/></a>
             </div>
           <%
           		}
