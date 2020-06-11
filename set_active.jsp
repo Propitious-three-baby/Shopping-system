@@ -29,20 +29,16 @@
         con=DriverManager.getConnection(url,"root","root");
         stmt=con.createStatement();
         String sql;
-         
-       
-
-            out.print(goods_id);
-           if(goods_id.equals("5")){
+           if(goods_id.equals("6")){
                 sql="update goods set promote=0 where goods_name='"+goods_name+"'";
            } 
-           else if(goods_id.equals("4")){
+           else if(goods_id.equals("5")){
                 sql="delete from goods where goods_name='"+goods_name+"'";
            } else
                sql="update goods set promote='"+goods_id+"' where goods_name='"+goods_name+"'";
            try{
-               out.print(sql);
                 stmt.executeUpdate(sql);
+                out.print("成功！");
            }catch(Exception e)
            {
                out.print(e);
