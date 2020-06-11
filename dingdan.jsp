@@ -200,7 +200,7 @@
  	String receive="";
  	
  	String url="";
- 	String price="";
+ 	float price="";
  	String type="";
  	int x=0;
  %>
@@ -232,7 +232,7 @@
 		System.out.println(receive);
  		
  		url=rs_dingdan.getString(12);
- 		price=rs_dingdan.getString(9);
+ 		price=rs_dingdan.getFloat(9);
  		type=rs_dingdan.getString(14);
    %>
    <div class="third">
