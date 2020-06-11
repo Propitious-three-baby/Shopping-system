@@ -21,6 +21,22 @@ body{
 	width:100%；
 	position:relative;
 }
+.top{
+	background-color:white;
+	magin:0 auto;
+	height:35px;
+	width:100;
+}
+.third{
+	background-color:#E9C2A6;
+	border-style: solid;
+	border-width: 2px 0px 0px 0px;
+	border-color:#D19275;
+	magin:0 auto;
+	height:40px;
+	width:100%；
+	position:relative;
+}
 .seventh{
 	background-color:#E9C2A6;
 	border-style: solid;
@@ -29,12 +45,6 @@ body{
 	magin:0 auto;
 	height:220px;
 	width:100%；
-}
-.top{
-	background-color:white;
-	magin:0 auto;
-	height:35px;
-	width:100;
 }
 .top-left{
 	float:left;
@@ -47,6 +57,17 @@ body{
 	 width:140px;
 	 height:35px;
 	 position:relative;
+}
+.top-left div{
+	position: absolute;
+	left: 49px;
+	top: 6px;
+	width: 135px;
+}
+.top-right div{
+	position: absolute;
+	top: -12px;
+	left: 2px;
 }
 .seventh-left{
 	border-width: 0px 2px 0px 0px;
@@ -63,23 +84,6 @@ body{
 	height:100%;
 	position:relative;
 }
-.first img{
-	position: absolute;
-	left: 9px;
-	top: 9px;
-}
-.top-left div{
-	position: absolute;
-	left: 49px;
-	top: 6px;
-	width: 124px;
-}
-.top-right div{
-	position: absolute;
-	top: -12px;
-	left: 2px;
-	width: 106px;
-}
 .seventh-left img{
 	position: absolute;
 	left: 40px;
@@ -92,28 +96,23 @@ body{
 }
 .seventh-right .price{
 	position: absolute;
-	left: 17px;
-	top: 100px;
+	left: 15px;
+	top: 70px;
 	width: 157px;
-	height: 53px;
+	height: 60px;
 }
-.seventh-right .type_{
+.seventh-right .type{
 	position: absolute;
 	left: 15px;
 	top: 10px;
 }
-.seventh-right .commodity_id{
-	position: absolute;
-	left: 16px;
-	top: 70px;
-	width: 181px;
-}
+
 .seventh-right .stock{
 	position: absolute;
 	width: 143px;
 	height: 42px;
-	left: 16px;
-	top: 130px;
+	left: 15px;
+	top: 100px;
 }
 .seventh-right .des{
 	position: absolute;
@@ -152,44 +151,54 @@ a{
      </div>
    </div>
  <%
- 	String huodong_id=request.getParameter("huodong_id");
- 	String sql1="select * from huodong,huodong_message,commodity_message where huodong.huodong_id='"
- 	+huodong_id+"' and huodong.huodong_id=huodong_message.huodong_id and huodong_message.commodity_id=commodity_message.commodity_id;";//通过传进的活动id获取活动信息
- 	ResultSet rs_huodong=batch.executeQuery(sql1);
- 	String commodity_id="";
-	String image="";
-	String commodity_name="";
-	String price="";
-	String type_="";
+ 	int promote=Integer.parseInt(request.getParameter("promote"));
+    System.out.println(promote);
+ 	String sql1="select * from goods where promote='"+promote+"';";
+	ResultSet rs_huodong=batch.executeQuery(sql1);
+	String goods_name="";
+	String url="";
+	float price;
 	String des="";
-	String stock="";
+	int stock;
+	String type="";
+	String s="";
+	if(promote==1){
+		s="每周新品";
+	}else if(promote==2){
+		s="必买榜单";
+	}else if(promote==3){
+		s="超U惠";
+	}
+%>
+<div class="sixth">
+       <div class="biaoti">
+       		<p><%=s %></p>
+       </div>
+ <div>
+<% 
 	while(rs_huodong.next()){
-		commodity_id=rs_huodong.getString(6);
-  		image=rs_huodong.getString(8);
-  		commodity_name=rs_huodong.getString(9);
-  		price=rs_huodong.getString(10);
-  		type_=rs_huodong.getString(11);
-  		des=rs_huodong.getString(12);
-  		stock=rs_huodong.getString(13);
+		goods_name=rs_huodong.getString(1);
+  		price=rs_huodong.getFloat(2);
+  		stock=rs_huodong.getInt(3);
+  		des=rs_huodong.getString(4);
+  		url=rs_huodong.getString(5);
+  		type=rs_huodong.getString(7);
  %>
-   <div class="seventh">
-          <a href="跳转商品详情页">
+   <a href="Dtails.jsp?goods_name=<%=goods_name%>">
+  <div class="seventh">
   	  <div class="seventh-left">
-          <img src="<%=image %>" class="b-image"/>
-       </div></a>
-      <div class="seventh-right">
-          <div class="name">
-              <p>商品名：<%=commodity_name %></p>
-          </div>
+          <img src="<%=url %>" class="b-image"/>
+       </div>
+    <div class="seventh-right">
+      <div class="name">
+             <p>商品名：<%=goods_name %></p>
+      </div>
       <div class="price">
-          <p>价格：<%=price %><p>
-      </div>
-      <div class="type_">
-               <p>类型：<%=type_ %></p>
-      </div>
-	  <div class="commodity_id">
-            <p>商品号：<%=commodity_id %></p>
-      </div>
+        <p>价格：<%=price %><p>
+           </div>
+           <div class="type">
+             <p>类型：<%=type %>类</p>
+           </div>
       <div class="des">
         <p>商品描述：<%=des %></p>
       </div>
@@ -198,6 +207,7 @@ a{
       </div>
     </div>
   </div>
+  </a>
  <%    }
  %>
    </div>
