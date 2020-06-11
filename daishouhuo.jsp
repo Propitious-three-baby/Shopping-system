@@ -176,7 +176,7 @@ a{
 	String receive="";
 	
 	String url="";
-	String price="";
+	float price;
 	String type="";
 %>
 <div class="container">
@@ -205,7 +205,7 @@ a{
   		receive=rs_dingdan.getString(7);System.out.println(receive);
   		
   		url=rs_dingdan.getString(12);
-  		price=rs_dingdan.getString(9);
+  		price=rs_dingdan.getFloat(9);
   		type=rs_dingdan.getString(14);
   		if(receive.equals("F")){
   			System.out.println("测试成功");
