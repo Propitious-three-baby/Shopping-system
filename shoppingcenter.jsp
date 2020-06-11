@@ -336,7 +336,7 @@ a{
 	if(promote==4){              //假设此处活动promote=4
 %>
     <div class="forth-left">
-          <a href="Dtails.jsp?=goods_id=<%=goods_name%>"><img src="<%=url%>"  /></a>
+          <a href="Dtails.jsp?goods_id=<%=goods_name%>"><img src="<%=url%>"  /></a>
     </div>
 <%       }
 	}
