@@ -113,12 +113,13 @@
             	<div class="商品" >商品库存量：<%=rs.getString("stock")%></div>
             </div>
             <div class="out">
-
+               
                 <a href="set_active.jsp?goods_id=1&goods_name=<%=rs.getString("goods_name")%>"><button class="商品" id="提交" >设为每周新品</button></a>
                 <a href="set_active.jsp?goods_id=2&goods_name=<%=rs.getString("goods_name")%>"><button class="商品" id="提交" >设为必买榜单</button></a>
                 <a href="set_active.jsp?goods_id=3&goods_name=<%=rs.getString("goods_name")%>"><button class="商品" id="提交" >设为超u惠</button></a>
-                <a href="set_active.jsp?goods_id=4&goods_name=<%=rs.getString("goods_name")%>"><button class="商品" id="提交" >删除</button></a>
-                <a href="set_active.jsp?goods_id=5&goods_name=<%=rs.getString("goods_name")%>"><button class="商品" id="提交" >取消活动设置</button></a>
+                 <a href="set_active.jsp?goods_id=4&goods_name=<%=rs.getString("goods_name")%>"><button class="商品" id="提交" >设为热门商品</button></a>
+                <a href="set_active.jsp?goods_id=5&goods_name=<%=rs.getString("goods_name")%>"><button class="商品" id="提交" >删除</button></a>
+                <a href="set_active.jsp?goods_id=6&goods_name=<%=rs.getString("goods_name")%>"><button class="商品" id="提交" >取消活动设置</button></a>
             </div>
             </div>
             <p>&nbsp;</p>
