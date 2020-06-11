@@ -10,7 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>登录界面</title>
-    </head>
     <style>
         *{
             margin: 0;
@@ -22,7 +21,6 @@
         .主体部分{
             display: line-block;
             padding: 20px 0 100px 550px;
-            
         }
         #背景{
             background:#E9C2A6;
@@ -32,10 +30,11 @@
             padding: 20px 0 100px 500px;
         }
         .size{
-            width:100px;
+            width:200px;
             height: 30px;
         }
     </style>
+    </head>
     <body>
         <div id="背景">
             <h2>欢迎来到吉祥三宝购物网站!</h2>
@@ -43,11 +42,14 @@
                 <img src="吉祥三宝.png" />
                 <p>&nbsp;</p>
                 <div>
-                    <form>
+                    <form method="get" action="judge.jsp">
                         账号：<input type="text" name="username"/><br>
                         密码：<input type="password" name="password"/><br>
                         <p>&nbsp;</p>
                         <input type="submit" value="登录" name="login" class="size"/>
+                    </form>
+                    <p>&nbsp;</p>
+                    <form method="get" action="register.jsp">
                         <input type="submit" value="注册" name="register" class="size"/>
                     </form>
                 </div>
