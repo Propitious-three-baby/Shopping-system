@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<jsp:useBean id="batch" class="com.Batch"></jsp:useBean>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -54,6 +55,7 @@ body{
 	border-color:#D19275;
 	background-color:#E9C2A6;
 	clear:both;
+	position:relative;
 }
 .interval{
 	width:100%;
@@ -151,30 +153,6 @@ body{
 	width:400px;
 	height:100%;
 }
-.forth-left{
-	float:left;
-	position:relative;
-	margin:0;
-	width:33.3%;
-	height:100%;
-}
-.forth-center{
-	float:left;
-	position:relative;
-	margin:0;
-	width:33.3%;
-	height:100%;
-	border-style: solid;
-	border-width:0px 2px 0px 2px;
-	border-color:#D19275;
-}
-.forth-right{
-	float:right;
-	position:relative;
-	margin:0;
-	width:33%;
-	height:100%;
-}
 .sixth-left{
 	float:left;
 	position:relative;
@@ -208,11 +186,13 @@ body{
 	position: absolute;
 	left: 49px;
 	top: 6px;
+	width: 124px;
 }
 .top-right div{
 	position: absolute;
-	top: -8px;
+	top: -12px;
 	left: 2px;
+	width: 106px;
 }
 .second-left img{
 	position: absolute;
@@ -258,20 +238,11 @@ body{
 	height: 90%;
 	width: 159px;
 }
-.forth-left div{
-	position: absolute;
-	left: 144px;
-	top: 36px;
-	width: 70px;
-}
-.forth-center div{
-	position: absolute;
-	left: 200px;
-	top: 36px;
-}
-.forth-right div{
+
+.forth div{
 	position: absolute;
 	left: 130px;
+
 	top: 36px;
 	width: 75px;
 }
@@ -325,88 +296,76 @@ a{
 </head>
 
 <body>
-<!-- 获取用户昵称，若不存在，则弹出警告框提醒用户去登陆，并跳转到登录页面 -->
-<!-- 测试功能时藏起来 -->
 
-<%	String nickname="纤夫的爱";
-	if(nickname==null||nickname==""){ %>
-<%/*String nickname=(String)session.getAttribute("nickname") ;
-   if(nickname==null||nickname==""){
-*/%>
-	 this.Response.Write("<script language=javascript>alert('请先登录');
-	window.window.location.href='login.jsp'</script>");
- <%  } else{  %>
+<%	String user_name=(String)session.getAttribute("username1");
+	
+	String yemian="usercenter";
+%>   
+
 <div class="container">
-   <div class="first">
+  <div class="first">
 	    <img src="image/logo.jpg"   class="c-image" />
 	</div>
-   <div class="top">
+	<div class="top">
       <div class="top-left">
         <a href="Shouye.jsp">
         <img  src="image/1.jpg" class="a-image"/></a>
 		<div>返回首页</div>
-      </div>
+     </div>
       <div class="top-right">
 	      <div><p>用户中心</p></div>
      </div>
    </div>
+<%
+    String sql1="select sex from user where user_name='"+user_name+"';";
+	ResultSet rs_user=batch.executeQuery(sql1);
+	
+	String sex="";
+	String url="";
+	
+	while(rs_user.next()){
+	  sex=rs_user.getString(1);
+	  
+	  //System.out.println(sex);
+	  if(sex.equals("男")){
+		  url="image/男.jpg";
+	  }else{
+	  	url="image/女.jpg";
+	  }
+	}
+%>
    <div class="second">
        <div class="second-left">
-           <img src="image/2.jpg" width="130" height="130" />
+           <img src="<%=url %>" width="130" height="130" />
        </div>
      <div class="second-center">
-       <p>昵称：<%=nickname %></p>     <!-- 用户昵称 -->
+       <p>昵称：<%=user_name %></p>     <!-- 用户昵称 -->
 	   </div>
 	   <div class="second-right">
-	      <div><a href="usermessage.jsp"><p>点击查看个人资料-></p></a></div>
+	      <div><a href="usermessage.jsp?yemian=<%=yemian%>"><p>点击查看个人资料-></p></a></div>
 	   </div>
    </div>
-<!-- 
-  <div class="second">
-       <div class="second-left">
-           <img src="image/2.jpg" width="130" height="130" />
-       </div>
-    <div class="second-zhuce">
-         <a href="register.jsp"><div align="center">注册</div></a>
-	   </div>
-	   <div class="second-denglu">
-	      <a href="login.jsp"><div align="center">登录</div></a>
-	   </div>
-   </div>
-   -->
   <div class="third">
         <div class="third-left">
 		    <div><p>我的订单</p></div>
 	    </div>
 		<div class="third-right">
-		    <div><a href="dingdan.jsp"><p>查看全部订单-></p></a></div>
+		    <div><a href="dingdan.jsp?user_name=<%=user_name %>"><p>查看全部订单-></p></a></div>
 		</div>
   </div>
+  <a href="daishouhuo.jsp?user_name=<%=user_name %>">
   <div class="forth">
-       <a href="daifukuan.jsp">       <div class="forth-left" align="center">              
-          <div align="center"><p>待付款</p>
-		  </div>
-        </div></a>
-	   <a href="daifahuo.jsp">
-       <div class="forth-center" align="center">
-         <div align="center">
-		       <p>待发货</p>
-		   </div>
-       </div></a>
-	   <a href="daishouhuo.jsp">
-       <div class="forth-right" align="center">
          <div align="center">
 		       <p>待收货</p>
-		   </div>
-       </div></a>
-	</div>
+		 </div>
+	</div></a>
 	<div class="interval">
 	</div>
 	<div class="fifth">
 	     <div align="center"><p>我的服务</p> </div>
   </div>
   <div class="sixth">
-       <a href="Gouwuche.jsp">
+       <a href="Gouwuche.jsp?user_name=<%=user_name %>">
        <div class="sixth-left" align="center">
 	       <div align="center">
 		       <p>购物车</p>
@@ -429,6 +388,5 @@ a{
       <div align="center"><p>退出登录</p></div></a>
     </div>
 </div>
- <%  }  %>
 </body>
 </html>
