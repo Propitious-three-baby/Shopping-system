@@ -102,7 +102,7 @@ body{
 	</div>
 <div class="top">
       <div class="top-left">
-        <a href="https://www.baidu.com//">
+        <a href="usercenter.jsp">
         <img  src="image/1.jpg" width="52" height="8" class="a-image" /></a>
 		<div>返回用户中心</div>
       </div>
@@ -111,10 +111,12 @@ body{
      </div>
   </div>
    <div class="second">
-        <div><p>站内信</p></div>
+        <div><p>站内信</p>
+        
+        </div>
   </div>
   <div class="third">
-       
+       &nbsp;&nbsp;这是一个购物网站。
   </div>
 </div>
 </body>
