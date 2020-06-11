@@ -35,11 +35,13 @@
         <hr>
         <table border="2" bgcolor="#E9C2A6" align="center">
                 <tr>
-                    <th>订单号</th>
-                    <th>姓名</th>
-                    <th>创建时间</th>
-                    <th>地址</th>
+                    <th>商品名称</th>
+                    <th>收货人</th>
+                    <th>订单创建时间</th>
+                    <th>商品数量</th>
                     <th>电话号码</th>
+                    <th>收货地址</th>
+                    <th>备注</th>
                 </tr>
         <%
             int stime=0 ,etime=0;
@@ -65,18 +67,26 @@
         url="jdbc:mysql://localhost:3306/shopping-system?useUnicode=true&characterEncoding=gbk";
         con=DriverManager.getConnection(url,"root","root");
         stmt=con.createStatement();
-        out.print(stime);
+       try{
+             String sql="select goods_name,order.user_name,creat_time,number,tel,address,remark from `order`,user where creat_time>='"+stime+"'and creat_time<='"+etime+"' and order.user_name=user.user_name" ;
 
-       String sql="select * from 订单 where 创建时间>='"+stime+"'&&创建时间<='"+etime+"'" ;
-        rs=stmt.executeQuery(sql);
+            rs=stmt.executeQuery(sql);  
+       }
+       catch(Exception e)
+       {
+           out.print(e);
+       }
+
         while(rs.next()){
         %>
         <tr>
-            <td> <%=rs.getString("id")%>  </td>
-            <td><%=rs.getString("姓名")%></td>
-            <td><%=rs.getString("创建时间")%></td>
-            <td><%=rs.getString("地址")%></td>
-            <td><%=rs.getString("电话号码")%></td>
+            <td> <%=rs.getString("goods_name")%>  </td>
+            <td><%=rs.getString("user_name")%></td>
+            <td><%=rs.getString("creat_time")%></td>
+            <td><%=rs.getString("number")%></td>
+            <td><%=rs.getString("tel")%></td>
+             <td><%=rs.getString("address")%></td>
+             <td><%=rs.getString("remark")%></td>
         </tr>
         <%
            }
@@ -84,4 +94,4 @@
             </table>
     </center>
     </body>
-</html>
+    
