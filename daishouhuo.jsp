@@ -103,32 +103,26 @@ body{
 .third-right .name{
 	position: absolute;
 	left: -190px;
-	top: 39px;
+	top: 46px;
 }
 .third-right .price{
 	position: absolute;
-	left: -190px;
-	top: 99px;
+	left: -191px;
+	top: 80px;
 	width: 157px;
 	height: 56px;
 }
-.third-right .type_{
+.third-right .type{
 	position: absolute;
 	left: -190px;
 	top: 10px;
-}
-.third-right .commodity_id{
-	position: absolute;
-	left: -190px;
-	top: 68px;
-	width: 181px;
 }
 .third-right .number{
 	position: absolute;
 	width: 143px;
 	height: 42px;
-	left: -190px;
-	top: 126px;
+	left: -189px;
+	top: 117px;
 }
 .third-right .remark{
 	position: absolute;
@@ -136,6 +130,11 @@ body{
 	top: 12px;
 	width: 330px;
 	height: 94px;
+}
+.third-right .create_time{
+	position: absolute;
+	left: -189px;
+	top: 158px;
 }
 .third-right input{
 	position: absolute;
@@ -165,23 +164,20 @@ a{
 </head>
 
 <body>
-<%	String nickname="纤夫的爱"; %><!-- 测试例 -->
+<%	String user_name=(String)session.getAttribute("username1"); %>
 <%
-	String sql1=" select * from dingdan_message,commodity_message where dingdan_message.user='"+nickname+"' and dingdan_message.commodity_id=commodity_message.commodity_id;";   //session.getAttribute("nickname")
+	String sql1=" select * from `order`,goods where order.user_name='"+user_name+"' and order.goods_name=goods.goods_name order by id;";   //session.getAttribute("nickname")
 	ResultSet rs_dingdan=batch.executeQuery(sql1);
-	String dingdan_id="";
-	String user="";
-	String payment="";
+	int id;
+	String goods_name="";
+	int create_time;
 	String remark="";
-	String number="";
-	String commodity_id="";
+	int number;
 	String receive="";
-	String send="";
 	
-	String image="";
-	String commodity_name="";
+	String url="";
 	String price="";
-	String type_="";
+	String type="";
 %>
 <div class="container">
    <div class="first">
@@ -194,55 +190,53 @@ a{
 		<div>返回用户中心</div>
       </div>
       <div class="top-right">
-	      <div><p>待付款</p></div>
+	      <div><p>待收货</p></div>
      </div>
    </div>
    <div class="second">
    </div>
     <%
   	while(rs_dingdan.next()){
-  		dingdan_id=rs_dingdan.getString(1);
-  		user=rs_dingdan.getString(2);
-  		payment=rs_dingdan.getString(3);
-  		System.out.println(payment);
-  		remark=rs_dingdan.getString(4);
-  		number=rs_dingdan.getString(5);
-  		commodity_id=rs_dingdan.getString(6);
-  		receive=rs_dingdan.getString(7);
-  		send=rs_dingdan.getString(8);System.out.println(send);
+  		id=rs_dingdan.getInt(1);
+  		goods_name=rs_dingdan.getString(2);
+  		create_time=rs_dingdan.getInt(3);
+  		remark=rs_dingdan.getString(5);
+  		number=rs_dingdan.getInt(6);
+  		receive=rs_dingdan.getString(7);System.out.println(receive);
   		
-  		image=rs_dingdan.getString(10);System.out.println(image);
-  		commodity_name=rs_dingdan.getString(11);
-  		price=rs_dingdan.getString(12);
-  		type_=rs_dingdan.getString(13);
-  		if(receive.equals("未收货")&&payment.equals("T")&&send.equals("已发货")){
+  		url=rs_dingdan.getString(12);
+  		price=rs_dingdan.getString(9);
+  		type=rs_dingdan.getString(14);
+  		if(receive.equals("F")){
   			System.out.println("测试成功");
   %>
   <div class="third">
         <div class="third-left">
-           <div class="dingdan_id"><p>订单号：</p></div>
-          <img src="<%=image %>" class="b-image"/>
+           <div class="dingdan_id"><p>订单号：<%=id %></p></div>
+          <img src="<%=url %>" class="b-image"/>
         </div>
         <div class="third-right">     
            <div class="name">
-             <p>商品名：<%=commodity_name %></p>
+             <p>商品名：<%=goods_name %></p>
            </div>
            <div class="price">
              <p>价格：<%=price %><p>
            </div>
-           <div class="type_">
-             <p>类型：<%=type_ %></p>
-           </div>
-	      <div class="commodity_id">
-            <p>商品号：<%=commodity_id %></p>
-           </div>
+           <div class="type">
+             <p>类型：<%=type %></p>
+          </div>
            <div class="number">
              <p>数量：<%=number %></p>
            </div>
           <div class="remark">
             <p>备注：<%=remark %></p>
-           </div>
-           <input type="submit" value="确认收货"/>
+          </div>
+          <div class="create_time">
+             <p>订单创建时间：<%=create_time%></p>
+          </div>
+          <a href="shouhuo_deal.jsp?goods_name=<%=goods_name%>&id=<%=id%>&user_name=<%=user_name%>">
+             <input type="submit" value="确认收货"/>
+          </a>
         </div>
    </div>
 <%      }
