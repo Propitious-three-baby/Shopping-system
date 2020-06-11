@@ -20,6 +20,7 @@
         <%
             String username=request.getParameter("username");
             String password=request.getParameter("password");
+            String username1=(String)session.getAttribute("username1");
         Connection con=null;
         Statement stmt=null;
         ResultSet rs=null;
@@ -28,11 +29,20 @@
         url="jdbc:mysql://localhost:3306/shopping-system?useUnicode=true&characterEncoding=gbk";
         con=DriverManager.getConnection(url,"root","root");
         stmt=con.createStatement();
-
-       String sql="select * from noname where 姓名='"+username+"'&&密码='"+password+"'";
+        String sql="select auth from user where user_name='"+ username+"'and password='"+password+"'";
+        try{
         rs=stmt.executeQuery(sql);
-        if(rs.next()){response.sendRedirect("Shouye.jsp");}
-        else{response.sendRedirect("login.jsp");}
+        if(rs.next()){
+            session.setAttribute("username1", username);
+            if(rs.getString("auth").equals("user"))
+                response.sendRedirect("Shouye.jsp");
+            else
+                response.sendRedirect("management.jsp");
+        }
+        else{   response.sendRedirect("login.jsp");}
+       }catch(Exception e){
+           out.print(e);
+       }
             %>
     </body>
 </html>
