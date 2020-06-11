@@ -21,10 +21,10 @@
             int id=2;
             String gname=request.getParameter("gname");
             String gprice=request.getParameter("gprice");
-            String gsize=request.getParameter("gsize");
             String gcount=request.getParameter("gcount");
             String gdescribe=request.getParameter("gdescribe");
-            
+            String gurl=request.getParameter("gurl");
+            String gtype=request.getParameter("gtype");
         Connection con=null;
         Statement stmt=null;
         ResultSet rs=null;
@@ -33,9 +33,7 @@
         url="jdbc:mysql://localhost:3306/shopping-system?useUnicode=true&characterEncoding=gbk";
         con=DriverManager.getConnection(url,"root","root");
         stmt=con.createStatement();
-        
-
-        String sql="insert into goods  values ( '"+id+"','"+gname+"','"+gprice+"','"+gsize+"','"+gcount+"','"+gdescribe+"')";
+        String sql="insert into goods  values ( '"+gname+"',"+gprice+","+gcount+",'"+gdescribe+"','"+gurl+"',0"+",'"+gtype+"')";
         try{
             stmt.executeUpdate (sql);
         }catch (Exception e){
@@ -43,9 +41,9 @@
             e.printStackTrace();
         }
         finally{
-            
              stmt.close();
               con.close();
+              response.sendRedirect("management.jsp");
         }
         
             %>
