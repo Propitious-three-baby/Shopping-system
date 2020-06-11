@@ -185,9 +185,9 @@
  </head>
 
  <body>
- <%	//String user_name=request.getParameter("user_name"); 
+ <%	String user_name=request.getParameter("user_name"); 
  	//System.out.println(user_name);
- 	String user_name="小红";
+ 	
  %>
  <%
  	String sql1="select * from `order`,goods where order.user_name='"+user_name+"' and order.goods_name=goods.goods_name order by id;";
