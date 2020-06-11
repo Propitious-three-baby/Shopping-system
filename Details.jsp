@@ -82,7 +82,7 @@
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <%
-            String goods=request.getParameter("shexiangji_id");
+            String goods=request.getParameter("goods_id"); 
             Connection con=null;
         Statement stmt=null;
         ResultSet rs=null;
@@ -92,27 +92,32 @@
         con=DriverManager.getConnection(url,"root","root");
         stmt=con.createStatement();
 
-       String sql="select * from goods where id='"+ goods+"'";
-        rs=stmt.executeQuery(sql);
+       try{
+           String sql="select * from goods where goods_name='"+ goods+"'";
+           rs=stmt.executeQuery(sql);
+       }catch(Exception e)
+       {
+           out.print(e);
+       }
         while(rs.next()){
         %>
 
             <div id="main" >
         	<img src="<%=rs.getString("url")%>" />
             <div class="out" >
-                <div class="商品" ><h1><%=rs.getString("name")%></h1></div>
+                <div class="商品" ><h1><%=rs.getString("goods_name")%></h1></div>
             </div>
             <div class="out">
             	<div class="商品" >商品价格：<%=rs.getString("price")%></div>
             </div>
             <div class="out">
-            	<div class="商品" >商品详细描述：<%=rs.getString("describe")%></div>
+            	<div class="商品" >商品详细描述：<%=rs.getString("des")%></div>
             </div>
             <div class="out">
-            	<div class="商品" >商品库存量：<%=rs.getString("count")%></div>
+            	<div class="商品" >商品库存量：<%=rs.getString("stock")%></div>
             </div>
             <div class="out">
-                <a href=""><button class="商品" id="提交" >加入购物车</button></a>
+                <a href="addtocart.jsp?goods_name=<%=rs.getString("goods_name")%>&user_name=xiaoming"><button class="商品" id="提交" >加入购物车</button></a>
             </div>
             </div>
             <p>&nbsp;</p>
@@ -122,4 +127,7 @@
         </div>
     </body>
 </html>
+
+
+
 
