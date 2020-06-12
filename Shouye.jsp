@@ -60,19 +60,19 @@
     <div id="bodyer1"></div>
     <div id="bodyer3">
       <div id="bodyer2"> 
-        <a href="huodong.jsp?promote=1"><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
+        <a href="huodong.jsp?promote=1"><img src="https://img.alicdn.com/imgextra/i2/1541853/O1CN0104VkhH1PYiVzmigIe_!!1541853-0-lubanu.jpg_290x290q90.jpg_.webp" width="340px" height="550px"></a>
       </div>
       <div id="bodyer4">
         <div id="bodyer1"></div>
         <div id="bodyer5">
           <div id="bodyer2"> 
-             <a href="huodong.jsp?promote=2"><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
+             <a href="huodong.jsp?promote=2"><img src="https://img.alicdn.com/tfs/TB1NHrNQFXXXXbSaXXXXXXXXXXX-190-480.jpg" width="340px" height="550px"></a>
           </div>
           <div id="bodyer6">
             <div id="bodyer1"></div>
             <div id="bodyer7">
               <div id="bodyer2"> 
-                <a href="huodong.jsp?promote=3"><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
+                <a href="huodong.jsp?promote=3"><img src="https://img.alicdn.com/tfs/TB1zpyIJi_1gK0jSZFqXXcpaXXa-320-476.jpg" width="340px" height="550px"></a>
               </div>
               <div id="bodyer8"></div>
             </div>
