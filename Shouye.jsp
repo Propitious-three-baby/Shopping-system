@@ -1,4 +1,4 @@
-<<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -36,6 +36,7 @@
 </head>
 
 <body>
+<%String UserName=(String)session.getAttribute("username1"); %>
 <div id="ZT">
   <div id="header">
     <div id="XX2"></div>
@@ -46,9 +47,9 @@
     <div id="nav">
         <table width="100%" height="40px">
            <tr>
-              <td align="center"><a href="">购物中心</a></td>
-              <td align="center"><a href="http://localhost:8080/KS/Gouwuche.jsp">购物车</a></td>
-              <td align="center"><a href="">用户中心</a></td>
+              <td align="center"><a href="shoppingcenter.jsp">购物中心</a></td>
+              <td align="center"><a href="Gouwuche.jsp">购物车</a></td>
+              <td align="center"><a href="usercenter.jsp">用户中心</a></td>
            </tr>
         </table>
     </div>
@@ -59,19 +60,19 @@
     <div id="bodyer1"></div>
     <div id="bodyer3">
       <div id="bodyer2"> 
-        <a href=""><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
+        <a href="huodong.jsp?promote=1"><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
       </div>
       <div id="bodyer4">
         <div id="bodyer1"></div>
         <div id="bodyer5">
           <div id="bodyer2"> 
-             <a href=""><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
+             <a href="huodong.jsp?promote=2"><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
           </div>
           <div id="bodyer6">
             <div id="bodyer1"></div>
             <div id="bodyer7">
               <div id="bodyer2"> 
-                <a href=""><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
+                <a href="huodong.jsp?promote=3"><img src="https://img.alicdn.com/simba/img/TB1YaolIbr1gK0jSZFDSuv9yVXa.jpg" width="340px" height="550px"></a>
               </div>
               <div id="bodyer8"></div>
             </div>
